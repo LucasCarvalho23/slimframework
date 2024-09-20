@@ -12,6 +12,11 @@
         return $response;
     });
 
+    $app->post('/usuarios/add', function(Request $request, Response $response){
+        $post = $request->getParsedBody();
+        return $response->getBody()->write($post['nome']);
+    });
+
     $app->run(); 
 
 ?>

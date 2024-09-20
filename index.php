@@ -23,6 +23,13 @@
         var_dump($servico);
     });
 
+    $container = $app->getContainer();
+    $container['Home'] = function() {
+        return new MyApp\controllers\Home(new MyApp\View);
+    };
+
+    $app->get('/usuario', 'Home:index');
+
     $app->run(); 
 
     /* 

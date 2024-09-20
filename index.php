@@ -1,17 +1,17 @@
 <?php
+
     require 'vendor/autoload.php';
 
-    $config = ['settings' => [
-    'addContentLengthHeader' => false,
-]];
-$app = new \Slim\App($config);
+    $app = new \Slim\App;
 
-// Define app routes
-$app->get('/hello/{name}', function ($request, $response, $args) {
-    return $response->write("Hello " . $args['name']);
-});
+    $app->get('/postagens', function(){
+        echo "Lista de mensagens";
+    });
+    $app->get('/usuarios/{id}', function($request, $response){
+        $id = $request->getAttribute('id');
+        echo "ID: ". $id;
+    });
 
-// Run app
-$app->run();
+    $app->run(); 
 
 ?>

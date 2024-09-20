@@ -7,27 +7,41 @@
 
     $app = new \Slim\App;
 
-    $app->get('/postagens', function(Request $request, Response $response){
-        $response->getBody()->write("Vasco");
-        return $response;
-    });
+    class Servico {
 
-    $app->post('/usuarios/add', function(Request $request, Response $response){
-        $post = $request->getParsedBody();
-        return $response->getBody()->write($post['nome']);
-    });
+    }
 
-    $app->put('/usuarios/update', function(Request $request, Response $response){
-        $post = $request->getParsedBody();
-        return $response->getBody()->write($post['email']);
-    });
+    $servico = new Servico;
 
-    $app->delete('/usuarios/delete', function(Request $request, Response $response){
-        $post = $request->getParsedBody();
-        return $response->getBody()->write('User ' . $post['nome'] . ' deletado com sucesso');
-    });
+    $container = $app->getContainer();
+    $container['servico'] = function() {
+        return new Servico;
+    };
 
+    $app->get('/servico', function(Request $request, Response $response) use($servico){
+        $servico = $this->get('servico');
+        var_dump($servico);
+    });
 
     $app->run(); 
+
+    /* 
+    
+        $app->post('/usuarios/add', function(Request $request, Response $response){
+            $post = $request->getParsedBody();
+            return $response->getBody()->write($post['nome']);
+        });
+
+        $app->put('/usuarios/update', function(Request $request, Response $response){
+            $post = $request->getParsedBody();
+            return $response->getBody()->write($post['email']);
+        });
+
+        $app->delete('/usuarios/delete', function(Request $request, Response $response){
+            $post = $request->getParsedBody();
+            return $response->getBody()->write('User ' . $post['nome'] . ' deletado com sucesso');
+        });
+    
+    */
 
 ?>

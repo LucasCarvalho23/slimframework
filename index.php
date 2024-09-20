@@ -17,6 +17,11 @@
         return $response->getBody()->write($post['nome']);
     });
 
+    $app->put('/usuarios/update', function(Request $request, Response $response){
+        $post = $request->getParsedBody();
+        return $response->getBody()->write($post['email']);
+    });
+
     $app->run(); 
 
 ?>

@@ -22,6 +22,12 @@
         return $response->getBody()->write($post['email']);
     });
 
+    $app->delete('/usuarios/delete', function(Request $request, Response $response){
+        $post = $request->getParsedBody();
+        return $response->getBody()->write('User ' . $post['nome'] . ' deletado com sucesso');
+    });
+
+
     $app->run(); 
 
 ?>

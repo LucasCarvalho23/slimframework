@@ -28,7 +28,9 @@
 
     $app->add(function(Request $request, Response $response, $next) {
         $response->write('This is Middleware + ');
-        return $next($request, $response);
+        $response = $next($request, $response);
+        $response->write(' + End the middleware.');
+        return $response;
     });
 
     $app->get('/usuario', function(Request $request, Response $response) {

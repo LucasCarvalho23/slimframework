@@ -26,6 +26,21 @@
         return $response->withHeader('Content-Type', 'application/xml');
     });
 
+    $app->add(function(Request $request, Response $response, $next) {
+        $response->write('This is Middleware + ');
+        return $next($request, $response);
+    });
+
+    $app->get('/usuario', function(Request $request, Response $response) {
+        $response->write('This is Usuário');
+    });
+
+    $app->get('/postagem', function(Request $request, Response $response) {
+        $response->write('This is Postagem');
+    });
+
+
+
     $app->run(); 
     
 ?>
